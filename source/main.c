@@ -20,10 +20,12 @@ int main(void) {
 	unsigned char tmpA = 0x00; 
 	unsigned char tmpC = 0x00;
 
+	unsigned char tmpABelt;
+
 	/* Insert your solution below */
     	while (1) {
 		//1.)read inputi
-		tmpA = PINA; 
+		tmpA = PINA & 0x0F; //Bottom nibble of tmpA 
 		
 		//2.) perform computation
 		if ( tmpA > 0) { //If 1 or 2, PC5 lights up  
@@ -54,8 +56,11 @@ int main(void) {
 		}
 
 		//Part 3
+		tmpABelt = PINA & 0xF0; //top nibble 
+
 		//PC7 = 1 when PA4 = 1 (key in), PA5= 1 ( driver seated), and PA6 = 0 (seatbelt not fastened)
-		if ( (tmpA & 0x70) == 0x30) {
+		//if ( (tmpA & 0xF0) == 0x30) { //changed to 0xF0 from 0x70
+		if (tmpABelt == 0x30) {
 			tmpC = tmpC | 0x80; 
 		}
 		else {	//else change nothin 

@@ -227,7 +227,40 @@ expectPORTC 0xBF
 checkResult
 
 
+#Special Case 2
+test "PINA: 0x11 => PORTC: 0x60"
+# Set inputs
+setPINA 0x11
+# Continue for several ticks
+continue 2
+# Set expect values
+expectPORTC 0x60
+# Check pass/fail
+checkResult
 
+
+#Special Case 3
+test "PINA: 0x25 => PORTC: 0x38"
+# Set inputs
+setPINA 0x25
+# Continue for several ticks
+continue 2
+# Set expect values
+expectPORTC 0x38
+# Check pass/fail
+checkResult
+
+
+#Special Case 4
+test "PINA: 0x47 => PORTC: 0x3C"
+# Set inputs
+setPINA 0x47
+# Continue for several ticks
+continue 2
+# Set expect values
+expectPORTC 0x3C
+# Check pass/fail
+checkResult
 
 # Report on how many tests passed/tests ran
 set $passed=$tests-$failed
