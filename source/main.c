@@ -26,24 +26,32 @@ int main(void) {
 		tmpA = PINA; 
 		
 		//2.) perform computation
-		if ( tmpA == 1 || tmpA == 2) { //If 1 or 2, PC5 lights up, pc6 on 
-			tmpC = tmpC | 0x60; 
+		if ( tmpA > 0) { //If 1 or 2, PC5 lights up,// pc6 on 
+			tmpC = tmpC | 0x20; 
 		} 
-		else if ( tmpA == 3 || tmpA == 4 ) { //if 3 or 4, PC5 and PC4 light up, PC6 on  
-			tmpC = tmpC | 0x70;
+		if ( tmpA > 2 ) { //if 3 or 4, PC5 and PC4 light up,// PC6 on  
+			tmpC = tmpC | 0x10;
 		}
-		else if ( tmpA == 5 | tmpA == 6) { //if 5 or 6, PC5-PC3 on 
-			tmpC = tmpC | 0x38;
+		if ( tmpA > 4 ) { //if 5 or 6, PC5-PC3 on 
+			tmpC = tmpC | 0x08;
 		}
-		else if ( tmpA == 7 || tmpA == 8 || tmpA == 9) { //7-9, PC5-PC2
-			tmpC = tmpC | 0x3C;
+		if ( tmpA > 6 ) { //7-9, PC5-PC2
+			tmpC = tmpC | 0x04;
 		}
-		else if ( tmpA == 10 || tmpA == 11 || tmpA == 12) { //10-12, PC5-PC1
-			tmpC = tmpC | 0x3E;
+		if ( tmpA > 9 ) { //10-12, PC5-PC1
+			tmpC = tmpC | 0x2;
 		}
-		else if ( tmpA == 13 || tmpA == 14 || tmpA == 15) { //13-15, PC5-PC0
-			tmpC = tmpC | 0x3F;
+		if ( tmpA > 12 ) { //13-15, PC5-PC0
+			tmpC = tmpC | 0x01;
 		}
+		
+		//If tmp < 5,, light up PC6			
+		if( tmpA < 5 ) { 
+			tmpC = tmpC | 0x40;
+		}
+		else {
+			tmpC = tmpC & 0xBF;
+		} 
 		
 		//3.) Write Output 
 		PORTC = tmpC;
