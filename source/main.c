@@ -1,7 +1,7 @@
 /*	Author: agonz250
  *  Partner(s) Name:  
  *	Lab Section: 028
- *	Assignment: Lab #3  Exercise # 2
+ *	Assignment: Lab #3  Exercise # 3
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
@@ -51,8 +51,16 @@ int main(void) {
 		}
 		else {	//Else keep everything the same 
 			tmpC = tmpC & 0xBF;
-		} 
-		
+		}
+
+		//Part 3
+		//PC7 = 1 when PA4 = 1 (key in), PA5= 1 ( driver seated), and PA6 = 0 (seatbelt not fastened)
+		if ( (tmpA & 0x70) == 0x70) {
+			tmpC = tmpC | 0x80; 
+		}
+		else { 
+			tmpC = tmpC & 0x7F; 
+		}
 		//3.) Write Output 
 		PORTC = tmpC;
     	}
