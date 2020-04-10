@@ -26,10 +26,10 @@ int main(void) {
 		tmpA = PINA; 
 		
 		//2.) perform computation
-		if ( tmpA > 0) { //If 1 or 2, PC5 lights up,// pc6 on 
+		if ( tmpA > 0) { //If 1 or 2, PC5 lights up  
 			tmpC = tmpC | 0x20; 
 		} 
-		if ( tmpA > 2 ) { //if 3 or 4, PC5 and PC4 light up,// PC6 on  
+		if ( tmpA > 2 ) { //if 3 or 4, PC5 and PC4 light up  
 			tmpC = tmpC | 0x10;
 		}
 		if ( tmpA > 4 ) { //if 5 or 6, PC5-PC3 on 
@@ -49,7 +49,7 @@ int main(void) {
 		if( tmpA < 5 ) { 
 			tmpC = tmpC | 0x40;
 		}
-		else {
+		else {	//Else keep everything the same 
 			tmpC = tmpC & 0xBF;
 		} 
 		
