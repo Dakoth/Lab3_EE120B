@@ -20,12 +20,9 @@ int main(void) {
 
 	unsigned char tmpA = 0x00; 
 	unsigned char tmpB = 0x00;
-	//unsigned char tmpC = 0x00;
 
 	unsigned char numA = 0; //number of 1s in A
 	unsigned char numB = 0; //number of 1s in B
-	//unsigned char sum = 0;
-
 
 	/* Insert your solution below */
     	while (1) {
