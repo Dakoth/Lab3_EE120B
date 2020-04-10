@@ -40,72 +40,51 @@ checkResult
 
 
 #1
-test "PINA: 0x01, PINB: 0x00 => PORTC: 1"
+test "PINA: 1 => PORTC: 0x60"
 # Set inputs
-setPINA 0x01
-setPINB 0x00
+setPINA 1
 # Continue for several ticks
 continue 2
 # Set expect values
-expectPORTC 1
+expectPORTC 0x60
+# Check pass/fail
+checkResult
+
+ 
+#2
+test "PINA: 2 => PORTC: 0x60"
+# Set inputs
+setPINA 2
+# Continue for several ticks
+continue 2
+# Set expect values
+expectPORTC 0x60
 # Check pass/fail
 checkResult
 
 
-#2
-test "PINA: 0x01, PINB: 0x01 => PORTC: 2"
+#3
+test "PINA: 3 => PORTC: 0x70"
 # Set inputs
-setPINA 0x01
-setPINB 0x01
+setPINA 3
 # Continue for several ticks
 continue 2
 # Set expect values
-expectPORTC 2
+expectPORTC 0x70
 # Check pass/fail
 checkResult
 
 
 #4
-test "PINA: 0x03, PINB: 0x30 => PORTC: 4"
+test "PINA: 4 => PORTC: 0x70"
 # Set inputs
-setPINA 0x03
-setPINB 0x30
+setPINA 4
 # Continue for several ticks
 continue 2
 # Set expect values
-expectPORTC 4
+expectPORTC 0x70
 # Check pass/fail
 checkResult
-
-
-#8
-test "PINA: 0x0F, PINB: 0x0F => PORTC: 8"
-# Set inputs
-setPINA 0x0F
-setPINB 0x0F
-# Continue for several ticks
-continue 2
-# Set expect values
-expectPORTC 8
-# Check pass/fail
-checkResult
-
-
-
-#16
-test "PINA: 0xFF, PINB: 0xFF => PORTC: 16"
-# Set inputs
-setPINA 0xFF
-setPINB 0xFF
-# Continue for several ticks
-continue 2
-# Set expect values
-expectPORTC 16
-# Check pass/fail
-checkResult
-
-
-
 
 
 # Report on how many tests passed/tests ran
