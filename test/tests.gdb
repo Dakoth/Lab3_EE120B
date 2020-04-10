@@ -214,6 +214,21 @@ expectPORTC 0x3F
 # Check pass/fail
 checkResult
 
+
+#Special Case
+test "PINA: 0x3F => PORTC: 0xBF"
+# Set inputs
+setPINA 0x3F
+# Continue for several ticks
+continue 2
+# Set expect values
+expectPORTC 0xBF
+# Check pass/fail
+checkResult
+
+
+
+
 # Report on how many tests passed/tests ran
 set $passed=$tests-$failed
 eval "shell echo Passed %d/%d tests.\n",$passed,$tests
