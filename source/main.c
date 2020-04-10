@@ -18,15 +18,31 @@ int main(void) {
 	DDRB = 0x00; PORTB = 0xFF; 	// similar to port A but for B
 	DDRC = 0xFF; PORTC = 0x00;	//Makes all port C's input pins as outputs; initalized to 0s
 
-	unsigned char tmpA, tmpB, tmpC;
+	unsigned char tmpA = 0x00; 
+	unsigned char tmpB = 0x00;
+	unsigned char tmpC = 0x00;
+
+	unsigned char numA = 0; //number of 1s in A
+	unsigned char numB = 0; //number of 1s in B
+	unsigned char sum = 0;
 
 
 	/* Insert your solution below */
     	while (1) {
-		//1.)read input
-		//2.) perform computation 
-		//3.) Write Output 
+		//1.)read inputi
+		tmpA = PINA; 
+		tmpB = PINB;
+ 
+		////2.) perform computation
+		numA = ((tmpA & 0x40) >> 6) + ((tmpA & 0x80) >> 7) ++ ((tmpA & 0x20) >> 5) + 
+		       ((tmpA & 0x10) >> 4) + ((tmpA & 0x08) >> 3) + ((tmpA & 0x04) >> 2) + ((tmpA & 0x02) >> 1) + (tmpA & 0x01);
 
+
+		numB = ((tmpB & 0x40) >> 6) + ((tmpB & 0x80) >> 7) ++ ((tmpB & 0x20) >> 5) + 
+		       ((tmpB & 0x10) >> 4) + ((tmpB & 0x08) >> 3) + ((tmpB & 0x04) >> 2) + ((tmpB & 0x02) >> 1) + (tmpB & 0x01);
+				
+		//3.) Write Output 
+		PORTC = numA + numB;
     	}
     	return 1;
 }
