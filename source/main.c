@@ -60,7 +60,7 @@ int main(void) {
 
 		//PC7 = 1 when PA4 = 1 (key in), PA5= 1 ( driver seated), and PA6 = 0 (seatbelt not fastened)
 		//if ( (tmpA & 0xF0) == 0x30) { //changed to 0xF0 from 0x70
-		if (tmpABelt == 0x30) {
+		if (tmpABelt == 48) {
 			tmpC = tmpC | 0x80; 
 		}
 		else {	//else change nothin 
