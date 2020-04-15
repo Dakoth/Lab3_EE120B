@@ -17,8 +17,8 @@ int main(void) {
 	DDRD = 0x00; PORTD = 0xFF;	//Makes all port A's input pins as inputs; initalized to 1s
 	DDRB = 0xFE; PORTB = 0x00;	//Makes every pin except P0 as an output. P0 is an input
 
-	unsigned char tmpD = 0x00;
-	unsigned char tmpB = 0x00; 
+	unsigned char tmpD; //= 0x00;
+	unsigned char tmpB;// = 0x00; 
 	
 	unsigned short weight = 0;
 
@@ -31,7 +31,7 @@ int main(void) {
 		//2.) perform computation
 		
 		//If B0 has a weight value
-		if (tempB == 0x01) {
+		if (tmpB == 0x01) {
 			weight = 1;
 		}
 
@@ -41,7 +41,7 @@ int main(void) {
 		//Finds sum of all 8 bits of B
 		while (i < 8) {
 			if (( ( tmpD >> i) & 0x01) == 0x01) {
-				weight += x;
+				weight = weight + x;
 			}
 			x = x * 2;
 			++i;
@@ -57,12 +57,12 @@ int main(void) {
 			tmpB = tmpB | 0x04;
 			tmpB = tmpB & 0xFD;
 		}
-		else {
+		else { 			//No passenger
 			tmpB = 0x00;
 		}
 			
 		//3.) Write Output
-		PORTB = tmpB
+		PORTB = tmpB;
 		//PORTC = tmpC;
     	}
     	return 1;
