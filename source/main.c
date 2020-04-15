@@ -1,7 +1,7 @@
 /*	Author: agonz250
  *  Partner(s) Name:  
  *	Lab Section: 028
- *	Assignment: Lab #3  Exercise # 3
+ *	Assignment: Lab #3  Exercise # 5
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
@@ -14,29 +14,38 @@
 
 int main(void) {
     	/* Insert DDR and PORT initializations */
-	DDRA = 0x00; PORTA = 0xFF;	//Makes all port A's input pins as inputs; initalized to 1s
-	DDRB = 0xFF; PORTB = 0xFF;
-	DDRC = 0xFF; PORTC = 0x00;	//Makes all port B's input pins as outputs; initalized to 0s
+	DDRD = 0x00; PORTD = 0xFF;	//Makes all port A's input pins as inputs; initalized to 1s
+	DDRB = 0xFE; PORTB = 0x00;	//Makes every pin except P0 as an output. P0 is an input
 
-	unsigned char tmpA = 0x00;
+	unsigned char tmpD = 0x00;
 	unsigned char tmpB = 0x00; 
-	unsigned char tmpC = 0x00;
+	
+	unsigned short weight = 0;
 
 	/* Insert your solution below */
     	while (1) {
-		//1.)read inputi
-		tmpA = PINA;
+		//1.)read input
+		tmpD = PIND;
+		tmpB = PINB & 0x01; 	//only uses B0 as an input 
 		
 		//2.) perform computation
-		//upper nibble of A to lower nibble of B 
-		tmpB = ( (tmpA & 0xF0) >> 4) | (tmpB & 0xF0);
+		
 
-		//lower nibble of A to upper nibble of C
-		tmpC = ((tmpA & 0x0F) << 4) | (tmpC & 0x0F);
-
+		if (weight >= 70) {
+			tmpB = tmpB | 0x02;
+			tmpB = tmpB & 0xFB;
+		}
+		else if ( weight < 70 && weight > 5) {
+			tmpB = tmpB | 0x04;
+			tmpB = tmpB & 0xFD;
+		}
+		else {
+			tmpB = 0x00;
+		}
+			
 		//3.) Write Output
-		PORTB = tmpB; 
-		PORTC = tmpC;
+		PORTB = tmpB
+		//PORTC = tmpC;
     	}
     	return 1;
 }
