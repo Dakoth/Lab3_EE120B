@@ -30,7 +30,25 @@ int main(void) {
 		
 		//2.) perform computation
 		
+		//If B0 has a weight value
+		if (tempB == 0x01) {
+			weight = 1;
+		}
 
+		int i = 0;
+		int x = 2;	
+	
+		//Finds sum of all 8 bits of B
+		while (i < 8) {
+			if (( ( tmpD >> i) & 0x01) == 0x01) {
+				weight += x;
+			}
+			x = x * 2;
+			++i;
+		}
+			
+
+		//airbag settings
 		if (weight >= 70) {
 			tmpB = tmpB | 0x02;
 			tmpB = tmpB & 0xFB;
